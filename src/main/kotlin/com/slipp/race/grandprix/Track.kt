@@ -8,12 +8,12 @@ class Track(_carList: List<Car>, _finalLap: Int) {
     private val random = Random()
 
     fun race(): Car {
-        for (lap in 1 .. finalLap) {
-            println("Lap (${lap}) ==================================")
+        for (lap in 0 until finalLap) {
+            println("Lap ($lap) ==================================")
             moveCars()
         }
 
-        println("Finsh ====================================")
+        println("Finish ===================================")
 
         return carList
                 .asSequence()
