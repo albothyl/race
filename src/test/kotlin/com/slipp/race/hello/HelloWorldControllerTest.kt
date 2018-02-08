@@ -16,14 +16,50 @@ class HelloWorldControllerTest {
     lateinit var client : WebTestClient
 
     @Test
-    fun helloWorld() {
-        client.get().uri("/helloworld")
+    fun helloWorld1() {
+        client.get().uri("/helloworld1")
                 .accept(MediaType.APPLICATION_JSON_UTF8)
                 .exchange()
                 .expectStatus().isOk
                 .expectBody()
                 .consumeWith {
                     Assertions.assertThat(String(it.responseBody)).isEqualTo("Hello World")
+                }
+    }
+
+    @Test
+    fun helloWorld2() {
+        client.get().uri("/helloworld2")
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .exchange()
+                .expectStatus().isOk
+                .expectBody()
+                .consumeWith {
+                    Assertions.assertThat(String(it.responseBody)).isEqualTo("Hello World")
+                }
+    }
+
+    @Test
+    fun helloWorld3() {
+        client.get().uri("/helloworld3")
+//                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .exchange()
+                .expectStatus().isOk
+                .expectBody()
+                .consumeWith {
+                    Assertions.assertThat(String(it.responseBody)).isEqualTo("Hello World")
+                }
+    }
+
+    @Test
+    fun helloWorld4() {
+        client.get().uri("/helloworld4")
+//                .accept(MediaType.TEXT_HTML)
+                .exchange()
+                .expectStatus().isOk
+                .expectBody()
+                .consumeWith {
+                    Assertions.assertThat(String(it.responseBody)).isEqualTo("helloworld")
                 }
     }
 }

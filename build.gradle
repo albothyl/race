@@ -38,6 +38,19 @@ repositories {
 }
 
 ext {
+	junitVerison = '4.12'
+	springVersion = '5.0.3.RELEASE'
+	servletVersion = '4.0.0'
+	handelbarViewResolverVersion = '4.0.6'
+
+//  Util ==================================
+	lombokVersion = '1.16.10'
+	guavaVersion = '19.0'
+
+//  Logging ===============================
+	slf4jVersion = '1.7.21'
+	logbackVersion = '1.1.7'
+
 //  Test ==================================
 	junitVerison = '4.12'
 }
@@ -46,6 +59,13 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-mustache')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-webflux')
+
+//	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+
+	compile("org.projectlombok:lombok:${lombokVersion}")
+
+	runtime("org.slf4j:jcl-over-slf4j:${slf4jVersion}")
+	runtime("ch.qos.logback:logback-classic:${logbackVersion}")
 
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	compile("org.jetbrains.kotlin:kotlin-reflect")

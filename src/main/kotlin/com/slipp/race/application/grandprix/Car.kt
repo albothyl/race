@@ -1,4 +1,6 @@
-package com.slipp.race.grandprix
+package com.slipp.race.application.grandprix
+
+import com.slipp.race.application.support.repeat
 
 class Car(val _name: String) {
     val name = _name
@@ -11,10 +13,4 @@ class Car(val _name: String) {
 
         println("${name}'s distance : ${"-".repeat(lap)}")
     }
-}
-
-infix fun String.repeat(no: Int): String {
-    val sb = StringBuilder()
-    (0 until no).forEach { sb.append(this) }
-    return sb.toString()
 }

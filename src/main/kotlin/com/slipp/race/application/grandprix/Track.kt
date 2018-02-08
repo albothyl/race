@@ -1,4 +1,4 @@
-package com.slipp.race.grandprix
+package com.slipp.race.application.grandprix
 
 import java.util.*
 

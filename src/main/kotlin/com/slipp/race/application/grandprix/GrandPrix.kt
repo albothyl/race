@@ -1,4 +1,4 @@
-package com.slipp.race.grandprix
+package com.slipp.race.application.grandprix
 
 fun main(args: Array<String>) {
     val carList = readLine()!!
