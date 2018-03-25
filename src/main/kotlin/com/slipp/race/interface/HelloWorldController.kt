@@ -1,4 +1,4 @@
-package com.slipp.race.`interface`.hello
+package com.slipp.race.`interface`
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController

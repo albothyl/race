@@ -11,6 +11,7 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+		classpath("org.junit.platform:junit-platform-gradle-plugin:1.0.0")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
 	}
 }
@@ -20,6 +21,7 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 group = 'com.slipp.race'
 version = '0.0.1-SNAPSHOT'
@@ -35,6 +37,15 @@ repositories {
 	mavenCentral()
 	maven { url "https://repo.spring.io/snapshot" }
 	maven { url "https://repo.spring.io/milestone" }
+	maven { url "http://dl.bintray.com/jetbrains/spek" }
+}
+
+junitPlatform {
+	filters {
+		engines {
+			include 'spek'
+		}
+	}
 }
 
 ext {
@@ -46,6 +57,7 @@ ext {
 //  Util ==================================
 	lombokVersion = '1.16.10'
 	guavaVersion = '19.0'
+	swaggerVersion = '2.6.1'
 
 //  Logging ===============================
 	slf4jVersion = '1.7.21'
@@ -57,12 +69,12 @@ ext {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-mustache')
-	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-webflux')
-
-//	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+//	compile group: 'com.spring4all', name: 'swagger-spring-boot-starter', version: '1.6.0.RELEASE'
 
 	compile("org.projectlombok:lombok:${lombokVersion}")
+	compile("com.google.guava:guava:${guavaVersion}")
 
 	runtime("org.slf4j:jcl-over-slf4j:${slf4jVersion}")
 	runtime("ch.qos.logback:logback-classic:${logbackVersion}")
@@ -70,5 +82,9 @@ dependencies {
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	compile("org.jetbrains.kotlin:kotlin-reflect")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile("junit:junit:${junitVerison}")
+	testCompile("junit:junit")
+//	testCompile("junit:junit:${junitVerison}")
+	testCompile("org.jetbrains.spek:spek-api:1.1.5")
+	testRuntime("org.jetbrains.spek:spek-junit-platform-engine:1.1.5")
+	testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.1.0'
 }

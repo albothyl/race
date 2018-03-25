@@ -42,7 +42,7 @@ class HelloWorldControllerTest {
     @Test
     fun helloWorld3() {
         client.get().uri("/helloworld3")
-//                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON_UTF8)
                 .exchange()
                 .expectStatus().isOk
                 .expectBody()
@@ -54,7 +54,7 @@ class HelloWorldControllerTest {
     @Test
     fun helloWorld4() {
         client.get().uri("/helloworld4")
-//                .accept(MediaType.TEXT_HTML)
+                .accept(MediaType.TEXT_HTML)
                 .exchange()
                 .expectStatus().isOk
                 .expectBody()

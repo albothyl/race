@@ -2,7 +2,7 @@ package com.slipp.race.application.grandprix
 
 import com.slipp.race.application.support.repeat
 
-class Car(val _name: String) {
+class Car(_name: String) {
     val name = _name
     var lap: Int = 0
 

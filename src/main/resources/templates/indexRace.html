@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>레이스!</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <style>
+    body {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: #eee;
+    }
+
+    .form-lotto {
+      max-width: 1000px;
+      padding: 15px;
+      margin: 0 auto;
+    }
+
+    .form-lotto .form-control {
+      position: relative;
+      height: auto;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .submit-button {
+      margin-top: 10px;
+    }
+  </style>
+
+  <script>
+    $("#raceRegistButton").click(function () {
+      finalLap = $("#finalLap").val();
+      racers = $("#racers").val();
+      formData = { 'finalLap': finalLap, 'racers': racers },
+
+        $.ajax({
+          type: "POST",
+          url: "/v1/regist",
+          data: formData,
+          dataType: "JSON",
+          success: function (data) {
+            $("#raceRegist").hide();
+            $("#raceReady").show();
+          },
+          error: function (data, xhr, status, error, textStatus) {
+            alert(data.responseText);
+          }
+        });
+    });
+
+    $("#raceStartButton").click(function () {
+      $.ajax({
+        type: "POST",
+        url: "/v1/regist",
+        data: formData,
+        dataType: "JSON",
+        success: function (data) {
+          $("#raceReady").hide();
+          $("#raceResult").show();
+        },
+        error: function (data, xhr, status, error, textStatus) {
+          alert(data.responseText);
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+
+    <!-- ---------------------------------------------------------------------- -->
+    <div id="raceRegist" class="col-md-12">
+      <h2 class="text-center">박진감 넘치는 자동차 레이싱 게임 with Pobi</h2>
+      <div class="form-show-div" class="form-group">
+        <h2>바퀴수를 입력하시오.</h2>
+        <input type="number" id="finalLap" name="finalLap">
+        <br />
+        <h2>이름을 입력하시오.</h2>
+        (이름마다 띄어쓰기로 구분해 주세요.)
+        <textarea class="form-control" rows="3" id="racers" name="racers" placeholder="A B C D">A,B,C,D</textarea>
+      </div>
+      <div class="submit-button">
+        <button class="btn btn-lg btn-primary btn-block" id="raceRegistButton">게임 만들기</button>
+      </div>
+    </div>
+
+    <!-- ---------------------------------------------------------------------- -->
+
+    <div id="raceReady" class="col-md-12">
+      <div class="form-show-div" class="form-group">
+        <table>
+          {{#racerList}}
+          <tr>
+            <td>{{this}}</td>
+          </tr>
+          {{/racerList}}
+        </table>
+
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" id="raceStartButton">게임시작!</button>
+    </div>
+
+    <!-- ---------------------------------------------------------------------- -->
+
+    <div id="raceResult" class="col-md-12">
+      <h2 class="text-center">박진감 넘치는 자동차 레이싱 게임 with Pobi</h2>
+      <div class="form-show-div" class="form-group">
+        <h3>결과입니다</h3>
+        (이름마다 띄어쓰기로 구분해 주세요.)
+        <br />
+        <div>{{winner.name}}이 우승했습니다.</div>
+      </div>
+    </div>
+    <!-- ---------------------------------------------------------------------- -->
+  </div>
+</div>
+
+</body>
+</html>
