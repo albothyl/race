@@ -28,9 +28,9 @@ class RaceController @Autowired constructor(private val granPrix: GrandPrix) {
     }
 
     @GetMapping("/race")
-    fun finalLap(race: Race, model: Model): String {
+    fun finalLap(model: Model): String {
 
-        model["winner"] = granPrix.race(race.finalLap)
+        model["winner"] = granPrix.race()
 
         return "result"
     }

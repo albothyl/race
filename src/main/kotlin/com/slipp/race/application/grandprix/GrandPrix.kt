@@ -18,12 +18,10 @@ class GrandPrix {
                 .map { racer -> Car(racer) }
                 .toList())
 
-//        println("===== racerList : ${racerList}")
-
         return racerList
     }
 
-    fun race(finalLap: Int): Car {
+    fun race(): List<String> {
         return Track(carList, finalLap).race()
     }
 }

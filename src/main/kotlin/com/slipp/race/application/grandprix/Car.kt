@@ -1,7 +1,5 @@
 package com.slipp.race.application.grandprix
 
-import com.slipp.race.application.support.repeat
-
 class Car(_name: String) {
     val name = _name
     var lap: Int = 0
@@ -10,7 +8,5 @@ class Car(_name: String) {
         if (distance > 4) {
             lap++
         }
-
-        println("${name}'s distance : ${"-".repeat(lap)}")
     }
 }
