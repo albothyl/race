@@ -31,10 +31,10 @@ class RaceController @Autowired constructor(private val granPrix: GrandPrix) {
     fun finalLap(model: Model): String {
         val raceResult = Flux
                 .fromIterable(granPrix.race())
-//              .repeat(granPrix.finalLap)
+//              .repeat(granPrix.finalLap) //granPrix.race()를 반복할줄 알았지만, 안함
                 .concatWith(Flux.fromIterable(granPrix.winner()))
 
-        model.addAttribute("raceResult", ReactiveDataDriverContextVariable(raceResult, 5))
+        model.addAttribute("raceResult", ReactiveDataDriverContextVariable(raceResult, 10))
 
         return "result-reactive"
     }

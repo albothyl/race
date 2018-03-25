@@ -26,7 +26,8 @@ class GrandPrix {
 
     fun race(): List<String> {
         val raceResult = Lists.newArrayList<String>()
-        for (lap in 0 until finalLap) {
+        for (lap in 1 until finalLap + 1) {
+            raceResult.add("Lap ($lap) ==================================")
             raceResult.addAll(track.race())
         }
 
