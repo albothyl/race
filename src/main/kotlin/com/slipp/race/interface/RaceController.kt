@@ -31,7 +31,7 @@ class RaceController @Autowired constructor(private val granPrix: GrandPrix) {
     fun finalLap(model: Model): String {
         val raceResult = Flux
                 .fromIterable(granPrix.race())
-                .repeat(granPrix.finalLap)
+//              .repeat(granPrix.finalLap)
                 .concatWith(Flux.fromIterable(granPrix.winner()))
 
         model.addAttribute("raceResult", ReactiveDataDriverContextVariable(raceResult, 5))
