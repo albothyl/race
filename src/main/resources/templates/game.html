@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>레이스!</title>
@@ -27,17 +27,17 @@
       padding-bottom: 40px;
       background-color: #eee;
     }
+
     .form-lotto {
       max-width: 1000px;
       padding: 15px;
       margin: 0 auto;
     }
+
     .submit-button {
       margin-top: 10px;
     }
   </style>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -46,20 +46,15 @@
   <div class="row">
 
     <div class="col-md-12">
-
-      <div class="form-show-div" class="form-group">
-        <table>
-          {{#racerList}}
-          <tr>
-            <td>{{this}}</td>
-          </tr>
-          {{/racerList}}
-        </table>
-
-      </div>
+      <h2 class="text-center">레이싱 게임 시작 설정 확인 및 시작</h2>
+      <table>
+        <tr th:each="racer : ${racerList}">
+          <td th:text="${racer}">...</td>
+        </tr>
+      </table>
       <form class="form-lotto" method="get" action="/race">
         <div class="submit-button">
-          <button class="btn btn-lg btn-primary btn-block" type="submit">게임 시작! </button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">게임 시작!</button>
         </div>
       </form>
     </div>

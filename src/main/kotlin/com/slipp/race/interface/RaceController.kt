@@ -7,14 +7,14 @@ import org.springframework.ui.Model
 import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.thymeleaf.spring5.context.webflux.ReactiveDataDriverContextVariable
+import reactor.core.publisher.Flux
 
 @Controller
 class RaceController @Autowired constructor(private val granPrix: GrandPrix) {
 
     @GetMapping("/")
     fun createGranPrixForm(model: Model): String {
-        model.addAttribute("name", "World")
-
         return "index"
     }
 
@@ -29,9 +29,13 @@ class RaceController @Autowired constructor(private val granPrix: GrandPrix) {
 
     @GetMapping("/race")
     fun finalLap(model: Model): String {
+        val raceResult = Flux
+                .fromIterable(granPrix.race())
+                .repeat(granPrix.finalLap)
+                .concatWith(Flux.fromIterable(granPrix.winner()))
 
-        model["winner"] = granPrix.race()
+        model.addAttribute("raceResult", ReactiveDataDriverContextVariable(raceResult, 5))
 
-        return "result"
+        return "result-reactive"
     }
 }
